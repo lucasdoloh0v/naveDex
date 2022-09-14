@@ -40,11 +40,15 @@ const Button: React.FC<ButtonProps> = styled.button`
     variants: {
       primary: {
         bg: 'primary',
-        color: 'white'
+        color: 'terciary'
       },
       secondary: {
-        bg: 'secondary',
-        color: 'primary'
+        bg: 'terciary',
+        color: 'primary',
+        borderColor: 'primary'
+      },
+      terciary: {
+        color: 'quaternary'
       }
     }
   })}
