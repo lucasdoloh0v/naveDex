@@ -1,5 +1,6 @@
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
+import '@fontsource/montserrat'
 
 import { useUser } from 'context/user'
 import { theme } from 'theme'
@@ -14,7 +15,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     box-sizing: border-box;
     outline: none;
-    font-family: sans-serif;
+    font-family: 'Montserrat';
     font-size: 16px;
   }
   button, a {
