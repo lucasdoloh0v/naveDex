@@ -41,7 +41,6 @@ const InputComponent: React.FC<InputComponentProps> = ({
 const Input = styled.input<InputProps>`
   height: 40px;
   padding: 4px 8px;
-  border-radius: 8px;
   border: 1px solid black;
   ${({ error }) => {
     if (error?.message) {
