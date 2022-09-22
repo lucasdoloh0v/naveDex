@@ -27,6 +27,7 @@ module.exports = {
     'prettier/prettier': 2,
     'space-before-function-paren': 0,
     'react/prop-types': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off'
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off'
   }
 }

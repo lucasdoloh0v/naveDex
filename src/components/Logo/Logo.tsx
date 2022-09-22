@@ -1,12 +1,14 @@
 import styled from 'styled-components'
 import { layout, LayoutProps, position, PositionProps, space, SpaceProps } from 'styled-system'
 
-interface LogoProps extends SpaceProps, PositionProps, LayoutProps {}
+interface LogoProps extends SpaceProps, PositionProps, LayoutProps {
+  height: string | number
+}
 
 function LogoComponent({ height, ...props }: LogoProps): JSX.Element {
   return (
     <Logo {...props}>
-      <svg height={height as string} viewBox='0 0 236 60' fill='none' xmlns='http://www.w3.org/2000/svg'>
+      <svg height={height} viewBox='0 0 236 60' fill='none' xmlns='http://www.w3.org/2000/svg'>
         <path
           fillRule='evenodd'
           clipRule='evenodd'
