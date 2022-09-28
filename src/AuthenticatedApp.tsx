@@ -1,12 +1,13 @@
-import { Route } from 'react-router-dom'
+import { Redirect, Route } from 'react-router-dom'
 
 import { Home } from 'screens'
 
 const AuthenticatedApp = () => {
   return (
-    <Route path='/'>
-      <Home />
-    </Route>
+    <>
+      <Route exact path='/home' component={Home} />
+      <Redirect to='/home' />
+    </>
   )
 }
 

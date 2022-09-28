@@ -1,5 +1,6 @@
+import { Header } from 'components'
 import { FC } from 'react'
 
-const Home: FC = () => <p>home</p>
+const Home: FC = () => <Header />
 
 export default Home
