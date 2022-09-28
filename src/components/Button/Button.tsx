@@ -40,7 +40,7 @@ const Button: React.FC<ButtonProps> = styled.button`
     variants: {
       primary: {
         bg: 'primary',
-        color: 'white'
+        color: 'secondary'
       },
       secondary: {
         bg: 'secondary',
@@ -50,7 +50,6 @@ const Button: React.FC<ButtonProps> = styled.button`
   })}
   height: 40px;
   padding: 4px 8px;
-  border-radius: 8px;
   border: 1px solid black;
   ${space}
   ${layout}
