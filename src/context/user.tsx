@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 
 import { getMe, loginUser } from 'services/auth'
-import { getToken, setToken, clearToken } from 'utils/auth'
+import { setToken, clearToken } from 'utils/auth'
 
 interface Credentials {
   email: string
@@ -28,16 +28,9 @@ const UserProvider: React.FC = props => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const token = await getToken()
       try {
-        if (token) {
-          const userResponse = await getMe()
-          return setUser(userResponse)
-        }
-        if (['/login'].includes(window.location.pathname)) {
-          return
-        }
-        window.location.href = '/login'
+        const userResponse = await getMe()
+        return setUser(userResponse)
       } catch (error) {
         console.log('error', error)
       } finally {
