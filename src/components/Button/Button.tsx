@@ -1,3 +1,4 @@
+import { ButtonHTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
 import {
   variant,
@@ -18,7 +19,15 @@ type ButtonVariants = {
   secondary: 'secondary'
 }
 
-export interface ButtonProps extends SpaceProps, LayoutProps, ColorProps, BorderProps, PositionProps {
+type ButtonHTMLProps = ButtonHTMLAttributes<HTMLButtonElement>
+
+export interface ButtonProps
+  extends SpaceProps,
+    LayoutProps,
+    ColorProps,
+    BorderProps,
+    PositionProps,
+    Omit<ButtonHTMLProps, 'color'> {
   variant: keyof ButtonVariants
   isLoading?: boolean
   disabled?: boolean
