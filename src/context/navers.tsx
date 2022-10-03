@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { toast } from 'react-toastify'
 import { Credentials, getNavers } from 'services/navers'
 
 export interface NaverInfos extends Credentials {
@@ -22,7 +23,7 @@ const NaversProvider: React.FC = props => {
       const naversResponse = await getNavers()
       setNavers(naversResponse)
     } catch (error) {
-      console.log(error)
+      toast.error('Não foi possivel obter os dados')
     } finally {
       setIsFetchingNavers(false)
     }
