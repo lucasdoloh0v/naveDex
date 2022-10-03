@@ -15,7 +15,7 @@ const Home: FC = () => {
       <Button variant='primary' onClick={openModal}>
         open
       </Button>
-      {modalOpen && <NaverModal />}
+      {modalOpen && <NaverModal setModalOpen={setModalOpen} />}
     </Fragment>
   )
 }

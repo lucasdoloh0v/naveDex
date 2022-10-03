@@ -1,18 +1,31 @@
 import { Column, Row, Text } from 'components'
+import { Pencil, Trash, X } from 'phosphor-react'
+import { Dispatch, SetStateAction } from 'react'
 import styled from 'styled-components'
+
+interface ModalProps {
+  setModalOpen: Dispatch<SetStateAction<boolean>>
+}
 
 // { name, job_role, birthdate, admission_date, project, url }
 
-const NaverModal = () => {
+const NaverModal = ({ setModalOpen }: ModalProps) => {
+  const closeModal = () => {
+    setModalOpen(false)
+  }
+
   return (
     <Background>
       <Modal>
         <Row>
-          <Column>
+          <Column width={'50%'}>
             {/* <img src={url} alt={name} /> */}
             <span>imagem</span>
           </Column>
-          <Column ml={10}>
+          <Column ml={10} width={'50%'}>
+            <Row p={5} justifyContent='flex-end'>
+              <X className='close' onClick={closeModal} size={14} />
+            </Row>
             <Text variant='big'>
               {/* {name} */}
               Nome do Naver
@@ -33,6 +46,10 @@ const NaverModal = () => {
               Projeto
             </Text>
             <Text variant='regular'>xx</Text>
+            <Row mt={10}>
+              <Trash size={16} />
+              <Pencil size={16} />
+            </Row>
           </Column>
         </Row>
       </Modal>
@@ -56,6 +73,9 @@ const Background = styled.div`
 const Modal = styled.div`
   background-color: #fff;
   width: 60%;
+  .close {
+    cursor: pointer;
+  }
 `
 
 export default NaverModal
