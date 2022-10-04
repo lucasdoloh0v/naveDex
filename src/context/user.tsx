@@ -1,7 +1,8 @@
 import { createContext, useContext, useState, useEffect } from 'react'
+import { toast } from 'react-toastify'
 
 import { getMe, loginUser } from 'services/auth'
-import { getToken, setToken, clearToken } from 'utils/auth'
+import { setToken, clearToken } from 'utils/auth'
 
 interface Credentials {
   email: string
@@ -23,21 +24,15 @@ interface UserContextData {
 const UserContext = createContext<UserContextData>({} as UserContextData)
 
 const UserProvider: React.FC = props => {
-  const [isFetchingUser, setIsFetchingUser] = useState(true)
+  const [isFetchingUser, setIsFetchingUser] = useState(false)
   const [user, setUser] = useState<UserData | null>(null)
 
   useEffect(() => {
     const fetchUser = async () => {
-      const token = await getToken()
+      setIsFetchingUser(true)
       try {
-        if (token) {
-          const userResponse = await getMe()
-          return setUser(userResponse)
-        }
-        if (['/login'].includes(window.location.pathname)) {
-          return
-        }
-        window.location.href = '/login'
+        const userResponse = await getMe()
+        return setUser(userResponse)
       } catch (error) {
         console.log('error', error)
       } finally {
@@ -54,7 +49,7 @@ const UserProvider: React.FC = props => {
       setToken(loginResponse.token)
       setUser(loginResponse)
     } catch (error) {
-      console.log('error', error)
+      toast.error('Email ou senha inválida')
     }
   }
 
