@@ -2,7 +2,7 @@ import api from 'providers/api'
 
 export interface Credentials {
   job_role: string
-  adimission_date: string
+  admission_date: string
   birthdate: string
   project: string
   name: string

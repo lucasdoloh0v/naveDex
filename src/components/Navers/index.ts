@@ -1,1 +1,1 @@
-export { default as Navers } from './Naver'
+export { default as Navers } from './Navers'
