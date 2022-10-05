@@ -1,8 +1,11 @@
-import { Column, Row, Text } from 'components'
-import { NaverInfos } from 'context/navers'
 import { Pencil, Trash, X } from 'phosphor-react'
 import { Dispatch, SetStateAction } from 'react'
 import styled from 'styled-components'
+import { formatDistanceToNowStrict } from 'date-fns'
+import brLocale from 'date-fns/locale/pt-BR'
+
+import { Column, Row, Text } from 'components'
+import { NaverInfos } from 'context/navers'
 
 interface ModalProps extends NaverInfos {
   setModalOpen: Dispatch<SetStateAction<boolean>>
@@ -13,24 +16,8 @@ const NaverModal = ({ setModalOpen, name, job_role, birthdate, admission_date, p
     setModalOpen(false)
   }
 
-  const formatBirth = (initialDate: string) => {
-    const date = new Date(initialDate)
-    const yearDate = date.getFullYear()
-    const monthDate = date.getMonth() + 1
-    const dayDate = date.getDate()
-
-    const currentDate = new Date()
-    const currYear = currentDate.getFullYear()
-    const currMonth = date.getMonth() + 1
-    const currDay = date.getDate()
-
-    let result = currYear - yearDate
-    if (currMonth < monthDate || (currMonth === monthDate && currDay < dayDate)) {
-      result--
-    }
-
-    return result < 0 ? 0 : result
-  }
+  const age = formatDistanceToNowStrict(new Date(birthdate), { locale: brLocale })
+  const companyTime = formatDistanceToNowStrict(new Date(admission_date), { locale: brLocale })
 
   return (
     <Background>
@@ -48,11 +35,11 @@ const NaverModal = ({ setModalOpen, name, job_role, birthdate, admission_date, p
             <Text variant='medium' fontWeight='bold'>
               Idade
             </Text>
-            <Text variant='regular'>{`${formatBirth(birthdate)} anos`}</Text>
+            <Text variant='regular'>{age}</Text>
             <Text variant='medium' fontWeight='bold'>
               Tempo de empresa
             </Text>
-            <Text variant='regular'>{`${formatBirth(admission_date)} anos`}</Text>
+            <Text variant='regular'>{companyTime}</Text>
             <Text variant='medium' fontWeight='bold'>
               Projeto
             </Text>
