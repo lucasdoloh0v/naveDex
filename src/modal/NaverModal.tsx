@@ -1,51 +1,49 @@
-import { Column, Row, Text } from 'components'
 import { Pencil, Trash, X } from 'phosphor-react'
 import { Dispatch, SetStateAction } from 'react'
 import styled from 'styled-components'
+import { formatDistanceToNowStrict } from 'date-fns'
+import brLocale from 'date-fns/locale/pt-BR'
 
-interface ModalProps {
+import { Column, Row, Text } from 'components'
+import { NaverInfos } from 'context/navers'
+
+interface ModalProps extends NaverInfos {
   setModalOpen: Dispatch<SetStateAction<boolean>>
 }
 
-// { name, job_role, birthdate, admission_date, project, url }
-
-const NaverModal = ({ setModalOpen }: ModalProps) => {
+const NaverModal = ({ setModalOpen, name, job_role, birthdate, admission_date, project, url }: ModalProps) => {
   const closeModal = () => {
     setModalOpen(false)
   }
+
+  const age = formatDistanceToNowStrict(new Date(birthdate), { locale: brLocale })
+  const companyTime = formatDistanceToNowStrict(new Date(admission_date), { locale: brLocale })
 
   return (
     <Background>
       <Modal>
         <Row>
           <Column width={'50%'}>
-            {/* <img src={url} alt={name} /> */}
-            <span>imagem</span>
+            <img src={url} alt={name} />
           </Column>
           <Column ml={10} width={'50%'}>
             <Row p={5} justifyContent='flex-end'>
               <X className='close' onClick={closeModal} size={14} />
             </Row>
-            <Text variant='big'>
-              {/* {name} */}
-              Nome do Naver
-            </Text>
-            <Text variant='regular'>
-              {/* {job_role} */}
-              Cargo
-            </Text>
+            <Text variant='big'>{name}</Text>
+            <Text variant='regular'>{job_role}</Text>
             <Text variant='medium' fontWeight='bold'>
               Idade
             </Text>
-            <Text variant='regular'>xx</Text>
+            <Text variant='regular'>{age}</Text>
             <Text variant='medium' fontWeight='bold'>
               Tempo de empresa
             </Text>
-            <Text variant='regular'>xx</Text>
+            <Text variant='regular'>{companyTime}</Text>
             <Text variant='medium' fontWeight='bold'>
               Projeto
             </Text>
-            <Text variant='regular'>xx</Text>
+            <Text variant='regular'>{project}</Text>
             <Row mt={10}>
               <Trash size={16} />
               <Pencil size={16} />

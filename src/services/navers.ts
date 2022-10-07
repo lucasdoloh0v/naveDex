@@ -1,9 +1,11 @@
 import api from 'providers/api'
 
+type ISODateString = string
+
 export interface Credentials {
   job_role: string
-  adimission_date: string
-  birthdate: string
+  admission_date: ISODateString
+  birthdate: ISODateString
   project: string
   name: string
   url: string

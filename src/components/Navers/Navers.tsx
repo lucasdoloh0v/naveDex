@@ -17,7 +17,7 @@ const Navers = () => {
       </Row>
       <Row m={10}>
         {navers?.map(naver => (
-          <NaverCard {...naver} key={naver.id} />
+          <NaverCard naver={naver} key={naver.id} />
         ))}
       </Row>
     </Fragment>
